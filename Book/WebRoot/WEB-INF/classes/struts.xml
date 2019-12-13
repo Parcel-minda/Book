@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<constant name="struts.i18n.encoding" value="gbk"/>
+<constant name="struts.devMode" value="true" />
+<constant name="struts.objectFactory" value="spring" />
+
+<package name="publishment" namespace="/publishment" extends="struts-default">
+<action name="publishment_*" class="publishmentAction" method="{1}">
+<result name="message">message.jsp</result>
+<result name="show_view">/main.jsp</result>
+<result name="detail_view">/detail.jsp</result>
+<result name="edit_view">/edit.jsp</result>
+<result name="delete_message">/delete_message.jsp</result>
+<result name="edit_message">/edit_message.jsp</result>
+</action>
+</package>
+
+<package name="userrs" namespace="/userrs" extends="struts-default">
+<action name="userrs_*" class="userrsAction" method="{1}">
+<result name="show_view" type="chain">
+<param name="actionName">publishment_showPublishment</param>
+<param name="namespace">/publishment</param>
+<param name="param1">${userrs.userrs_name}</param>
+</result>
+<result name="input">/login.jsp</result>
+</action>  
+</package>
+</struts>    
